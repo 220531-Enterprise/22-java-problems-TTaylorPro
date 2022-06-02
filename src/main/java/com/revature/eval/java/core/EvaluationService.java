@@ -45,7 +45,10 @@ public class EvaluationService {
 		 */
 		public static String printConversion(double kilometersPerHour) {
 			// TODO Write an implementation for this method declaration
-			return null;
+			if (kilometersPerHour<0.0) return "Invalid Value";
+			else {
+				return (kilometersPerHour + " km/h = " + Math.round(kilometersPerHour * 0.621371) + " mi/h");
+			}
 		}
 	}
 
