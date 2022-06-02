@@ -167,7 +167,10 @@ public class EvaluationService {
 	 */
 	public String printYearsAndDays(long minutes) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		if (minutes < 0) return "Invalid Value";
+		else {
+			return (minutes + " min = " + minutes/525600 + " y and " + (minutes%525600)/1440 + " d");
+		}
 	}
 
 	/**
