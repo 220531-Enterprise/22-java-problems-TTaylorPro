@@ -118,6 +118,7 @@ public class EvaluationService {
 	 */
 	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) {
 		// TODO Write an implementation for this method declaration
+		if (((double)((int)(firstNum*1000)))/1000 == ((double)((int)(secondNum*1000)))/1000) return true;
 		return false;
 	}
 
