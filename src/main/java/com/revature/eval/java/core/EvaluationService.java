@@ -136,6 +136,7 @@ public class EvaluationService {
 
 		public static boolean hasTeen(int x, int y, int z) {
 			// TODO Write an implementation for this method declaration
+			if(isTeen(x)||isTeen(y)||isTeen(z)) return true;
 			return false;
 		}
 
@@ -144,6 +145,7 @@ public class EvaluationService {
 
 		public static boolean isTeen(int number) {
 			// TODO Write an implementation for this method declaration
+			if(number >= 13 && number <= 19) return true;
 			return false;
 		}
 	}
