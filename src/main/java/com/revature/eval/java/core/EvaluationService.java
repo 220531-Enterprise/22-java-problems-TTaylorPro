@@ -309,7 +309,14 @@ public class EvaluationService {
 	 */
 	public int sumFirstAndLastDigit(int num) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		if (num < 0) return -1;
+		else if (num < 10) return num+num;
+		else {
+			String number = Integer.toString(num);
+			Integer firstDigit = new Integer(number.substring(0, 1));
+			Integer lastDigit = new Integer(number.substring(number.length()-1,number.length()));
+			return firstDigit.intValue() + lastDigit.intValue();
+		}
 	}
 
 	/**
