@@ -349,7 +349,32 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		boolean getNextLetter = true;
+		String acronym = "";
+		
+		for (int i = 0; i < phrase.length(); i++) {
+			if(getNextLetter) {
+				if(Character.isLetter(phrase.charAt(i))){
+					acronym+=Character.toUpperCase(phrase.charAt(i));
+					getNextLetter = false;
+				}
+			}
+			
+			else {
+				//Contraction checker
+				if(!Character.isLetter(phrase.charAt(i))) {
+					if(phrase.charAt(i)=='\'' && i>0) {
+						if(Character.isLetter(phrase.charAt(i-1))) {
+							//do nothing if it's a contraction
+						}
+					}
+					
+					else getNextLetter = true;
+				}
+			}
+		}
+		
+		return acronym;
 	}
 
 	/**
