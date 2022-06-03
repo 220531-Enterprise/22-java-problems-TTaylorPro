@@ -1,5 +1,7 @@
 package com.revature.eval.java.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -231,7 +233,65 @@ public class EvaluationService {
 	 */
 	public int getGreatestCommonDivisor(int first, int second) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		if (first < 10 || second < 10) {
+			return -1;
+		}
+		
+		else if (first == second) {
+			return first;
+		}
+		
+		else {
+			
+			int larger;
+			int smaller;
+			
+			if (first > second) {
+				larger = first;
+				smaller = second;
+			}
+			
+			else {
+				larger = second;
+				smaller = first;
+			}
+			
+			boolean done = false;
+			int factorBeingChecked = 2;
+			int lastFactorFound = 0;
+			ArrayList<Integer> factors= new ArrayList<Integer>();
+			factors.add(new Integer(1));
+			
+			while (!done) {
+				if (factorBeingChecked == lastFactorFound) done = true;
+				
+				else {
+					if (larger%factorBeingChecked == 0) {
+						factors.add(new Integer(factorBeingChecked));
+					
+						if (larger/factorBeingChecked != factorBeingChecked) {
+							factors.add(new Integer(larger/factorBeingChecked));
+						}
+					
+						else done = true;
+					
+						lastFactorFound = larger/factorBeingChecked;
+						
+					}
+					factorBeingChecked++;
+				}
+			}
+			
+			Collections.sort(factors, Collections.reverseOrder());
+			
+			for (Integer n: factors) {
+				if (smaller%n.intValue() == 0) {
+					return n.intValue();
+				}
+				
+			}
+			return -1;
+		}
 	}
 
 	/**
