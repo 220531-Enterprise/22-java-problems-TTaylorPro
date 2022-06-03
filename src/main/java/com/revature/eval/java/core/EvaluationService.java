@@ -3,6 +3,7 @@ package com.revature.eval.java.core;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -473,7 +474,30 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		Map<Character, Integer> scoreSystem = new HashMap<Character, Integer>();
+		insertScrabbleMap("AEIOULNRST", 1, scoreSystem);
+		insertScrabbleMap("DG", 2, scoreSystem);
+		insertScrabbleMap("BCMP", 3, scoreSystem);
+		insertScrabbleMap("FHVWY", 4, scoreSystem);
+		insertScrabbleMap("K", 5, scoreSystem);
+		insertScrabbleMap("JX", 8, scoreSystem);
+		insertScrabbleMap("QZ", 10, scoreSystem);
+		
+		int score = 0;
+		
+		for (int i = 0; i < string.length(); i++) {
+			if(Character.isLetter(string.charAt(i))) {
+				score+= scoreSystem.get(Character.toUpperCase(string.charAt(i))).intValue();
+			}
+		}
+		
+		return score;
+	}
+	
+	private void insertScrabbleMap(String dict, int value, Map scoreSystem) {
+		for (int i = 0; i < dict.length(); i++) {
+			scoreSystem.put(dict.charAt(i),value);
+		}
 	}
 
 	/**
