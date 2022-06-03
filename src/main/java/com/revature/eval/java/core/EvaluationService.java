@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -327,7 +328,16 @@ public class EvaluationService {
 	 */
 	public String reverse(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		
+		if (string.length() < 2) return string;
+		
+		else {
+			String reverse = "";
+			for (int i = 0;i < string.length();i++) {
+				reverse+=string.substring(string.length()-i-1,string.length()-i);
+			}
+			return reverse;
+		}
 	}
 
 	/**
