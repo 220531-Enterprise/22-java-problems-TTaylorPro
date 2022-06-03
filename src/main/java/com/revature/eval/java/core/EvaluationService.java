@@ -533,8 +533,58 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
-	public String cleanPhoneNumber(String string) {
-		return null;
+	public String cleanPhoneNumber(String string) throws IllegalArgumentException {
+		String number = "";
+		for (int i = 0; i < string.length(); i++) {
+			if(Character.isDigit(string.charAt(i))) number += string.charAt(i);
+			else if (allowed(string.charAt(i), 0)) {
+				//do nothing
+			}
+			else {
+				//throw exception
+				throw new IllegalArgumentException();
+			}
+		}
+		
+		if (number.length() != 10 && number.length() != 11) {
+			//throw exception
+			throw new IllegalArgumentException();
+		}
+		
+		int buffer = 0;
+		
+		if(number.length() == 11) {
+			if(number.charAt(0) != 1) {
+				//throw exception
+				throw new IllegalArgumentException();
+			}
+			buffer++;
+		}
+		
+		for (int i = buffer; i < number.length(); i++) {
+			if ((i - buffer == 0 || i - buffer == 3) && (!(allowed(number.charAt(i),1)))) {
+				//throw exception
+				throw new IllegalArgumentException();
+			}
+			
+			else {
+				if(!(allowed(number.charAt(i),2))) {
+					//throw exception
+					throw new IllegalArgumentException();
+				}
+			}
+		}
+		
+		return number;
+	}
+	
+	private boolean allowed(char c, int set) {
+		String[] allowed = {"+-() .","23456789","0123456789"};
+		
+		for(int i = 0; i<allowed[set].length(); i++) {
+			if (c == allowed[set].charAt(i)) return true;
+		}
+		return false;
 	}
 
 	/**
