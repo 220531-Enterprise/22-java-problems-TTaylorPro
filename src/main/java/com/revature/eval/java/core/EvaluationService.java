@@ -597,7 +597,50 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		Map<String, Integer> wordCount = new HashMap<String, Integer>();
+		boolean wordFound = false;
+		String foundWord = "";
+		
+		for (int i = 0; i < string.length(); i++) {
+			if (!wordFound) {
+				if (Character.isLetter(string.charAt(i)) || string.charAt(i) == '\''){
+					wordFound = true;
+					foundWord+= string.charAt(i);
+				}
+			}
+			
+			else {
+				if(!(Character.isLetter(string.charAt(i)) || string.charAt(i) == '\'')) {
+					wordFound = false;
+					
+					if (wordCount.containsKey(foundWord)) {
+						wordCount.put(foundWord, wordCount.get(foundWord) + 1);
+					}
+					
+					else {
+						wordCount.put(foundWord, 1);
+					}
+					
+					foundWord = "";
+				}
+				
+				else {
+					foundWord+= string.charAt(i);
+				}
+			}
+		}
+		
+		if (wordFound) {
+			if (wordCount.containsKey(foundWord)) {
+				wordCount.put(foundWord, wordCount.get(foundWord) + 1);
+			}
+			
+			else {
+				wordCount.put(foundWord, 1);
+			}
+		}
+		
+		return wordCount;
 	}
 
 	/**
