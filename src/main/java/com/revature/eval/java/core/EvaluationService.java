@@ -761,7 +761,35 @@ public class EvaluationService {
 	 */
 	public int calculateNthPrime(int k) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		if (k < 1) throw new IllegalArgumentException();
+		else if (k == 1) return 2;
+		int[] primes = new int[k];
+		primes[0] = 2;
+		int primesCount = 1;
+		int toCheck = 3;
+		boolean done = false;
+		boolean prime = true;
+		
+		while (!done) {
+			for (int i = 0; i < primesCount; i++) {
+				if (toCheck%primes[i]==0) {
+					prime = false;
+					break;
+				}
+			}
+			if (prime == true) {
+				primes[primesCount]= toCheck;
+				primesCount++;
+				if (primesCount==k) done = true;
+			}
+			toCheck++;
+			prime = true;
+		}
+		
+		
+		
+		
+		return primes[k-1];
 	}
 
 	/**
