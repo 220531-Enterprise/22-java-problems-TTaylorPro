@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -683,9 +684,68 @@ public class EvaluationService {
 	 * 
 	 * Note that 1 is not a prime number.
 	 */
+	
+	List<Long> primeFactors;
+	
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		 primeFactors = new LinkedList<Long>();
+		
+		if (l < 1L) {
+			//return primeFactors;
+		}
+		else if (l < 4L) {
+			primeFactors.add(l);
+			System.out.println("Found one: " + l);
+			//return primeFactors;
+		}
+		else {
+			boolean factorFound = false;
+			long foundFactor = 0L;
+			for(long m = 2L; m <= l/2; m++) {
+				if (l%m == 0) {
+					factorFound = true;
+					foundFactor = m;
+					break;
+				}
+			}
+			
+			if (!factorFound) primeFactors.add(l);
+			else {
+				rCalculatePrimeFactorsOf(foundFactor);
+				rCalculatePrimeFactorsOf(l/foundFactor);
+			}
+		}
+		
+		
+		return primeFactors;
+	}
+	
+	private void rCalculatePrimeFactorsOf(long l) {
+		if (l < 1L) {
+			//return primeFactors;
+		}
+		else if (l < 4L) {
+			primeFactors.add(l);
+			//return primeFactors;
+		}
+		else {
+			boolean factorFound = false;
+			long foundFactor = 0L;
+			for(long m = 2L; m <= l/2; m++) {
+				if (l%m == 0) {
+					factorFound = true;
+					foundFactor = m;
+					break;
+				}
+			}
+			
+			if (!factorFound) primeFactors.add(l);
+			else {
+				rCalculatePrimeFactorsOf(foundFactor);
+				rCalculatePrimeFactorsOf(l/foundFactor);
+			}
+		}
 	}
 
 	/**
