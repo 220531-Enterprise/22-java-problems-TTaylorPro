@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class EvaluationService {
 
@@ -806,7 +808,16 @@ public class EvaluationService {
 	 */
 	public boolean isPangram(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		
+		Set<Character> alphabet = new HashSet<Character>();
+		
+		for (int i = 0; i < string.length(); i++) {
+			if (Character.isLetter(string.charAt(i))) alphabet.add(Character.toLowerCase(string.charAt(i)));
+		}
+		
+		if (alphabet.size() == 26) return true;
+		
+		else return false;
 	}
 
 	/**
