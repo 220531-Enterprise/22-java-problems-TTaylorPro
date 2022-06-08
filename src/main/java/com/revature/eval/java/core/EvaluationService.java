@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 public class EvaluationService {
@@ -856,7 +857,13 @@ public class EvaluationService {
 	 */
 	
 	public int[] threeLuckyNumbers() {
-		return null;
+		Random rand = new Random();
+		int[] threeLuckyNumbers = new int[3];
+		for (int i = 0; i < 3; i++) {
+			threeLuckyNumbers[i] = (rand.nextInt(99))+1;
+		}
+		
+		return threeLuckyNumbers;
 	}
 	
 	/*
@@ -870,6 +877,7 @@ public class EvaluationService {
 	 */
 	
 	public int guessingGame(int x, int y) {
-		return 0;
+		Random rand = new Random();
+		return rand.nextInt(x,y+1);
 	}
 }
