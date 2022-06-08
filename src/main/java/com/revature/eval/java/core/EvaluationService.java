@@ -832,7 +832,17 @@ public class EvaluationService {
 	 * The sum of these multiples is 78.
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		return 0;
+		int sum = 0;
+		boolean found = false;
+		for (int j = 1; j < i; j++) {
+			for (int k = 0; k < set.length;k++) {
+				if (j%set[k] == 0) found = true;
+			}
+			if (found == true) sum+= j;
+			found = false;
+		}
+		
+		return sum;
 	}
 	
 	/**
