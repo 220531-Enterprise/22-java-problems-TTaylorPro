@@ -658,7 +658,21 @@ public class EvaluationService {
 	 * a number is an Armstrong number.
 	 */
 	public boolean isArmstrongNumber(int input) {
-		return false;
+		if (input < 0) return false;
+		else if (input < 10) return true;
+		else {
+		
+		String in = Integer.toString(input);
+		int length = in.length();
+		int total = 0;
+		for (int i = 0; i < length; i++) {
+			total+= Math.pow(Character.getNumericValue(in.charAt(i)), length);//digit at index equals character at index
+			
+		}
+		
+		return (total == input);
+		}
+		
 	}
 
 	/**
